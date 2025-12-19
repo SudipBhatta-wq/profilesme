@@ -22,7 +22,18 @@ export default function App({ signOut, user }) {
         setLoading(false)
       }
     }
-    loadProfile()
+    loadProfile() return (
+    <div>
+      <h1>Profiles App</h1>
+
+      <p>
+        Signed in as: <strong>{loading ? 'Loading…' : (email || 'Unknown')}</strong>
+      </p>
+
+      <button onClick={signOut}>Sign out</button>
+    </div>
+  )
+}
   }, [user])
 
   return (
