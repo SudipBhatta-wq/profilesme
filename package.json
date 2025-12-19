@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "aws-amplify": "^6.15.9",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@aws-amplify/ui-react": "^6.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@aws-amplify/backend": "^1.19.0",
     "@aws-amplify/backend-cli": "^1.8.1",
     "@eslint/js": "^9.39.1",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^5.1.1",
     "aws-cdk-lib": "^2.216.0",
     "constructs": "^10.4.4",
