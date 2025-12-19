@@ -1,3 +1,44 @@
+import { useEffect, useState } from 'react'
+import { Amplify } from 'aws-amplify'
+import outputs from '../amplify_outputs.json'
+import { generateClient } from 'aws-amplify/data'
+
+Amplify.configure(outputs)
+const client = generateClient()
+
+export default function App({ signOut, user }) {
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const { data } = await client.models.UserProfile.list()
+        setEmail(data?.[0]?.email ?? user?.signInDetails?.loginId ?? '')
+      } catch (e) {
+        console.error(e)
+        setEmail(user?.signInDetails?.loginId ?? '')
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadProfile()
+  }, [user])
+
+  return (
+    <div>
+      <h1>Profiles App</h1>
+
+      <p>
+        Signed in as:{' '}
+        <strong>{loading ? 'Loading…' : (email || 'Unknown')}</strong>
+      </p>
+
+      <button onClick={signOut}>Sign out</button>
+    </div>
+  )
+}
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
